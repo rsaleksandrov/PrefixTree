@@ -1,4 +1,5 @@
 import os.path
+import prefixtree
 
 
 def getFileName(checkexist=False) -> str:
@@ -19,6 +20,7 @@ def getFileName(checkexist=False) -> str:
 if __name__ == '__main__':
     print('Prefix tree.')
     isExit = False
+    pt = prefixtree.PrefixTree()
     while not isExit:
         print('Choose:')
         print('1. Load data from txt file')
@@ -34,3 +36,13 @@ if __name__ == '__main__':
             isExit = True
             continue
         fn = getFileName(True)
+        if choose == '1':
+            pt.loadFromTxt(fn)
+        elif choose == '2':
+            pt.saveToTxt(fn)
+        elif choose == '3':
+            pt.loadFromBin(fn)
+        elif choose == '4':
+            pt.saveToBin(fn)
+
+print('END.')
