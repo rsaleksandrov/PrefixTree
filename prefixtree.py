@@ -24,6 +24,21 @@ class PrefixTree:
             curNode = curNode.edges[word[i]]
         curNode.isTerminate = True
 
+    def checkWord(self, word, correctword=False) -> bool:
+        if len(word) == 0:
+            return False
+
+        curnode = self.head
+        for i in range(len(word)):
+            if word[i] not in curnode.edges:
+                return False
+            curnode = curnode.edges[word[i]]
+
+        if not correctword:
+            return True
+
+        return curnode.isTerminate
+
     def loadFromTxt(self, filename: str, encoding='utf-8'):
         f = open(filename, 'r', encoding=encoding)
         for line in f:
