@@ -35,7 +35,7 @@ if __name__ == '__main__':
         if choose == '0':
             isExit = True
             continue
-        fn = getFileName(True)
+        fn = getFileName((True if choose in ['1', '3'] else False))
         if choose == '1':
             pt.loadFromTxt(fn)
         elif choose == '2':

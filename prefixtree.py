@@ -1,3 +1,6 @@
+import pickle
+
+
 class PrefixTreeNode:
     def __init__(self):
         self.edges = dict()
@@ -5,6 +8,8 @@ class PrefixTreeNode:
 
 
 class PrefixTree:
+    __version = 'PT_V1'
+
     def __init__(self):
         self.head = PrefixTreeNode()
 
@@ -19,14 +24,32 @@ class PrefixTree:
             curNode = curNode.edges[word[i]]
         curNode.isTerminate = True
 
-    def loadFromTxt(self, filename: str):
+    def loadFromTxt(self, filename: str, encoding='utf-8'):
+        f = open(filename, 'r', encoding=encoding)
+        for line in f:
+            line = line.strip('\n')
+            self.addWord(line)
+        f.close()
         pass
 
     def loadFromBin(self, filename: str):
+        f = open(filename, 'rb')
+        unpkl = pickle.Unpickler(f)
+        tmpver = unpkl.load()
+        if tmpver != self.__version:
+            f.close()
+            raise Exception(f'Uncorrected version file {filename}')
+        self.head = unpkl.load()
+        f.close()
         pass
 
     def saveToTxt(self, filename: str):
         pass
 
     def saveToBin(self, filename: str):
+        f = open(filename, 'wb')
+        pkl = pickle.Pickler(f)
+        pkl.dump(self.__version)
+        pkl.dump(self.head)
+        f.close()
         pass
