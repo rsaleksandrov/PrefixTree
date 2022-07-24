@@ -25,8 +25,10 @@ def checkWords(prefTree):
         if len(word) == 0:
             isStop = True
             continue
-        corr = prefTree.checkWord(word, True)
-        pcorr = prefTree.checkWord(word, False)
+        word = word.lower()
+        # corr = prefTree.checkWord(word, True)
+        # pcorr = prefTree.checkWord(word, False)
+        corr, pcorr = prefTree.checkWord(word)
 
         if not corr and not pcorr:
             print('UNCORRECTED')
