@@ -61,12 +61,18 @@ if __name__ == '__main__':
             fn = getFileName((True if choose in ['1', '3'] else False))
         if choose == '1':
             pt.loadFromTxt(fn)
+            print(f'Load OK. Loaded {pt.wordCount} words in {pt.nodeCount} '
+                  f'nodes')
         elif choose == '2':
             pt.saveToTxt(fn)
+            print('Save OK.')
         elif choose == '3':
             pt.loadFromBin(fn)
+            print(f'Load OK. Loaded {pt.wordCount} words in {pt.nodeCount} '
+                  f'nodes')
         elif choose == '4':
             pt.saveToBin(fn)
+            print('Save OK.')
         elif choose == '5':
             checkWords(pt)
 
